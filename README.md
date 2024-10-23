@@ -1,2 +1,37 @@
-# projeto-biblioteca
-Um projeto de uma biblioteca para Daniel
+## Criação das tabelas
+
+CREATE TABLE IF NOT EXISTS Autores (
+    AutorID INT PRIMARY KEY NOT NULL,
+    Nome VARCHAR(100) NOT NULL,
+    Sobrenome VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Generos (
+    GeneroID INT PRIMARY KEY NOT NULL,
+    NomeGenero VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS Livros (
+    LivroID INT PRIMARY KEY NOT NULL,
+    Titulo VARCHAR(255) NOT NULL,
+    AnoPublicacao INT,
+    AutorID INT,
+    GeneroID INT,
+    Disponivel INT DEFAULT 1,
+    FOREIGN KEY (AutorID) REFERENCES Autores(AutorID),
+    FOREIGN KEY (GeneroID) REFERENCES Generos(GeneroID)
+);
+
+CREATE TABLE IF NOT EXISTS Leitores (
+    LeitorID INT PRIMARY KEY NOT NULL,
+    Nome VARCHAR(100) NOT NULL,
+    Sobrenome VARCHAR(100) NOT NULL,
+    Email VARCHAR(255) NOT NULL UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS Usuarios (
+    id SERIAL PRIMARY KEY NOT NULL,
+    Nome VARCHAR(100) NOT NULL,
+    Senha VARCHAR(100) NOT NULL
+)
+"""
